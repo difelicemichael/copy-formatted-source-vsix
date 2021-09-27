@@ -38,17 +38,17 @@ namespace CopyFormattedSource
       /// </summary>
       internal static IEnumerable<string> WrapSource(this IEnumerable<string> sourceSelection, Document document, int line)
       {
-         // --- header first ---
+         /* header first */
          yield return GetLanguageHeader(document);
 
-         // --- then path comment ---
+         /* then path comment */
          yield return GetPathComment(document, line);
 
-         // --- then, every line in the selection ---
+         /* then, every line in the selection */
          foreach (var s in sourceSelection)
             yield return s;
 
-         // --- finally, the footer ----
+         /* finally, the footer */
          yield return SourceFormatStr;
       }
 

@@ -88,19 +88,19 @@ namespace CopyFormattedSource
       {
          await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-         // --- get document object ---
+         /* get document object */
          var dte = await ServiceProvider.GetServiceAsync(typeof(DTE)) as DTE;
          var activeDocument = dte?.ActiveDocument;
          if (activeDocument == null)
             return;
 
-         // --- get active selection ---
+         /* get active selection */
          var textDocument = activeDocument.Object() as TextDocument;
          var selection = activeDocument.Selection as TextSelection;
          if (selection.TopLine >= selection.BottomLine)
             return;
 
-         // --- split lines ---
+         /* split lines */
          var text = textDocument.CreateEditPoint(textDocument.StartPoint).GetLines(selection.TopLine, selection.BottomLine + 1);
          var lines = Regex.Split(text, "\\r+\\n+").ToList();
          var lineOffset = 0;
@@ -113,10 +113,10 @@ namespace CopyFormattedSource
             || lastNonEmptyLine < 0)
             return;
 
-         // --- get the trimmed selection (includes the last line) ---
+         /* get the trimmed selection (includes the last line) */
          lines = lines.GetRange(firstNonEmptyLine, lastNonEmptyLine - firstNonEmptyLine + 1);
 
-         // --- convert tabs to spaces ---
+         /* convert tabs to spaces */
          lines = ApplyForEach(ref lines, (s) =>
          {
             var sb = new StringBuilder();
@@ -133,7 +133,7 @@ namespace CopyFormattedSource
             return sb.ToString();
          });
 
-         // --- determine the minimum whitespace to remove by ---
+         /* determine the minimum whitespace to remove by */
          var minWhitespaceOnNonEmptyLine = int.MaxValue;
          foreach (var s in lines)
          {
@@ -143,7 +143,7 @@ namespace CopyFormattedSource
             minWhitespaceOnNonEmptyLine = Math.Min(minWhitespaceOnNonEmptyLine, CountWhitespaceChars(s));
          }
 
-         // --- remove N chars from the beginning of every line ---
+         /* remove N chars from the beginning of every line */
          lines = ApplyForEach(ref lines, (s) =>
          {
             if (string.IsNullOrWhiteSpace(s))
@@ -154,7 +154,7 @@ namespace CopyFormattedSource
                : s;
          });
 
-         // --- wrap lines in language tags ---
+         /* wrap lines in language tags */
          var lineNo = selection.TopLine + lineOffset;
          Clipboard.SetText(string.Join(Environment.NewLine, lines.WrapSource(activeDocument, lineNo)));
       }
