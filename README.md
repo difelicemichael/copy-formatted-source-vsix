@@ -1,5 +1,5 @@
 # CopyFormattedSource
-A Visual Studio extension which copies a section of text from the selected active document and wraps it in backticks (*``*) for Markdown use.
+A Visual Studio extension which copies a section of text from the selected active document and wraps it in backticks (*```*) for Markdown use.
 
 # Extra Formatting
 By default, the following formatting rules are applied -
