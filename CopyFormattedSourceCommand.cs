@@ -97,7 +97,7 @@ namespace CopyFormattedSource
          /* get active selection */
          var textDocument = activeDocument.Object() as TextDocument;
          var selection = activeDocument.Selection as TextSelection;
-         if (selection.TopLine >= selection.BottomLine)
+         if (selection.TopLine > selection.BottomLine)
             return;
 
          /* split lines */
