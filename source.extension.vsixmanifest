@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="CopyFormattedSource.843f51e5-342b-47d5-9d95-cf5d009029d5" Version="1.0" Language="en-US" Publisher="Michael Di Felice" />
-        <DisplayName>CopyFormattedSource</DisplayName>
+        <Identity Id="CopyMarkdownSource.0c43a35d-81fc-4919-897d-c9245bc425b4" Version="1.0" Language="en-US" Publisher="Michael Di Felice" />
+        <DisplayName>CopyMarkdownSource</DisplayName>
         <Description xml:space="preserve">Copies text from the active document window within Visual Studio and applies source formatting using backticks.
 
 Also copies the path as a comment at the top of the copied text.</Description>
         <License>LICENSE.txt</License>
-        <Icon>CopyFormattedSourceCommand.png</Icon>
-        <PreviewImage>CopyFormattedSourceCommand.png</PreviewImage>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
@@ -21,4 +19,7 @@ Also copies the path as a comment at the top of the copied text.</Description>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,18.0)" DisplayName="Visual Studio core editor" />
     </Prerequisites>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+    </Assets>
 </PackageManifest>
