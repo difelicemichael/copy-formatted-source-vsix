@@ -7,6 +7,7 @@
 
 Also copies the path as a comment at the top of the copied text.</Description>
         <License>LICENSE.txt</License>
+        <Icon>images\brackets.png</Icon>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
